@@ -1,16 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Technical Meta Tags & Performance Optimization -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - Age Verification Required</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- Geo-Targeting for Requested Countries -->
+    <meta name="geo.region" content="AR, AU, AT, BE, CA, CL, DK, FI, FR, DE, GR, IE, IL, IT, MX, NL, NZ, NO, PT, ZA, ES, SE, CH, GB, US">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+
+    <!-- SEO Primary Tags -->
+    <title>Sensello - Official Store | Premium Wellness & Performance Product</title>
+    <meta name="description" content="Discover Sensello, the premium choice for adult wellness and performance. Scientifically developed for comfort and results. Available now in USA, Canada, UK, Australia, Europe, and more with fast worldwide shipping.">
+    <meta name="keywords" content="sensello, buy sensello, sensello official, sensello wellness, sensello adult product, sensello performance, sensello international, sensello store, sensello reviews">
+    <link rel="canonical" href="https://sensselo.vercel.app/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sensselo.vercel.app/">
+    <meta property="og:title" content="Sensello - Official Store | Premium Wellness & Performance">
+    <meta property="og:description" content="Experience the quality of Sensello. High-performance wellness products designed for your comfort. Secure checkout and discreet global delivery.">
+    <meta property="og:image" content="https://sensselo.vercel.app/images/sensselo-desk.png">
+    <meta property="og:site_name" content="Sensello">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://sensselo.vercel.app/">
+    <meta name="twitter:title" content="Sensello - Official Store | Premium Performance Product">
+    <meta name="twitter:description" content="Shop Sensello wellness products. Premium quality, scientifically formulated, and shipped worldwide. Order yours today.">
+    <meta name="twitter:image" content="https://sensselo.vercel.app/images/sensselo-desk.png">
+
+    <!-- DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload Critical Assets -->
+    <link rel="preload" as="image" href="images/sensselo-desk.png" media="(min-width: 768px)">
+    <link rel="preload" as="image" href="images/sensselo-mob.png" media="(max-width: 767px)">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://sensselo.vercel.app/#website",
+          "url": "https://sensselo.vercel.app/",
+          "name": "Sensello",
+          "description": "Official International Store for Sensello Products",
+          "publisher": { "@id": "https://sensselo.vercel.app/#organization" }
+        },
+        {
+          "@type": "Product",
+          "name": "Sensello Premium Product",
+          "image": "https://sensselo.vercel.app/images/sensselo-desk.png",
+          "description": "High-quality premium adult wellness product designed for maximum performance and comfort.",
+          "brand": {
+            "@type": "Brand",
+            "name": "Sensello"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "url": "https://sensselo.vercel.app/",
+            "priceCurrency": "USD",
+            "lowPrice": "29.90",
+            "highPrice": "69.90",
+            "offerCount": "1",
+            "availability": "https://schema.org/InStock",
+            "areaServed": ["AR", "AU", "AT", "BE", "CA", "CL", "DK", "FI", "FR", "DE", "GR", "IE", "IL", "IT", "MX", "NL", "NZ", "NO", "PT", "ZA", "ES", "SE", "CH", "GB", "US"]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Where is Sensello shipped from?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sensello orders are processed and shipped globally from our international fulfillment centers, including locations in Europe and Asia."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is there a warranty for Sensello?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, all Sensello products come with a standard two-year warranty against manufacturing defects."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/faviconV2.png">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
@@ -23,7 +121,7 @@
             height: 100vh;
         }
 
-        /* Background handling */
+        /* Background Layer with blurring */
         .bg-image {
             position: fixed;
             top: 0;
@@ -37,10 +135,18 @@
             transition: filter 0.5s ease;
         }
 
-        @media (min-width: 768px) { .bg-image { background-image: url('sensselo-desk.png'); } }
-        @media (max-width: 767px) { .bg-image { background-image: url('sensselo-mob.png'); } }
+        /* Responsive Backgrounds */
+        @media (min-width: 768px) { 
+            .bg-image { background-image: url('images/sensselo-desk.png'); } 
+        }
+        @media (max-width: 767px) { 
+            .bg-image { background-image: url('images/sensselo-mob.png'); } 
+        }
 
-        .is-blurred { filter: blur(8px) brightness(0.5); }
+        /* The requested slight blur effect */
+        .is-blurred { 
+            filter: blur(6px) brightness(0.4); 
+        }
 
         .modal-overlay {
             position: fixed;
@@ -49,48 +155,47 @@
             align-items: center;
             justify-content: center;
             z-index: 50;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.6);
         }
 
         .modal-content {
-            background-color: #0a0a0a;
+            background-color: #0d0d0d;
             border: 1px solid #222;
             color: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            max-width: 450px;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            max-width: 440px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 1);
+            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 1);
         }
 
-        /* Info "Cookie" Modal (Legal Content) */
+        /* Legal Content Modal */
         .info-modal {
             position: fixed;
             inset: 0;
             z-index: 100;
-            display: none; /* Hidden by default */
+            display: none;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.9);
             padding: 1rem;
         }
 
         .info-content {
             background-color: #111;
-            color: #ccc;
+            color: #ddd;
             width: 100%;
-            max-width: 700px;
-            max-height: 80vh;
-            border-radius: 0.75rem;
+            max-width: 800px;
+            max-height: 85vh;
+            border-radius: 1rem;
             border: 1px solid #333;
             display: flex;
             flex-direction: column;
-            position: relative;
         }
 
         .info-header {
-            padding: 1.25rem;
+            padding: 1.5rem;
             border-bottom: 1px solid #222;
             display: flex;
             justify-content: space-between;
@@ -98,18 +203,20 @@
         }
 
         .info-body {
-            padding: 1.5rem;
+            padding: 2rem;
             overflow-y: auto;
-            font-size: 0.875rem;
-            line-height: 1.6;
+            font-size: 0.9rem;
+            line-height: 1.7;
             text-align: left;
         }
 
-        .info-body h2 { color: white; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; }
-        .info-body p { margin-bottom: 1rem; }
-        .info-body table { width: 100%; border-collapse: collapse; margin: 1rem 0; border: 1px solid #333; }
-        .info-body th, .info-body td { border: 1px solid #333; padding: 0.5rem; text-align: left; font-size: 0.75rem; }
-        .info-body th { background: #222; color: white; }
+        .info-body h2 { color: white; font-weight: 800; margin-top: 1.8rem; margin-bottom: 0.8rem; font-size: 1.25rem; border-left: 3px solid #fff; padding-left: 10px; }
+        .info-body p { margin-bottom: 1.2rem; }
+        .info-body strong { color: white; }
+        
+        .info-body table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #0a0a0a; }
+        .info-body th, .info-body td { border: 1px solid #333; padding: 12px; text-align: left; font-size: 0.8rem; }
+        .info-body th { background: #1a1a1a; color: white; text-transform: uppercase; letter-spacing: 1px; }
 
         footer {
             position: fixed;
@@ -117,19 +224,20 @@
             left: 0;
             width: 100%;
             z-index: 40;
-            padding: 1rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,1));
             text-align: center;
         }
 
         .footer-link {
-            color: #666;
+            color: #555;
             font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 8px;
+            letter-spacing: 1.5px;
+            margin: 0 12px;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: all 0.3s;
+            font-weight: 600;
         }
 
         .footer-link:hover { color: #fff; }
@@ -137,7 +245,7 @@
 </head>
 <body>
 
-    <!-- Background Layer -->
+    <!-- Blurred Background -->
     <div id="background" class="bg-image is-blurred"></div>
 
     <!-- Age Verification Modal -->
@@ -146,44 +254,47 @@
             <div class="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-red-600 text-red-600 text-2xl font-black">
                 18+
             </div>
-            <h1 class="text-2xl font-black mb-4 tracking-tight uppercase">Confirm Your Age</h1>
-            <p class="text-gray-400 mb-8 leading-relaxed">
-                This website contains adult content. You must be at least 18 years old to enter.
+            <h1 class="text-3xl font-black mb-2 tracking-tighter uppercase italic">Sensello</h1>
+            <h2 class="text-sm font-bold mb-4 tracking-widest text-gray-500 uppercase">Age Verification</h2>
+            
+            <p class="text-gray-400 mb-8 leading-relaxed text-sm">
+                This website contains adult content intended for individuals aged 18 and older. Please confirm your age to proceed.
             </p>
+
             <div class="space-y-4">
                 <a href="https://www.fasttrack37.com/PM7HK3TH/2RS2R65Q/?uid=49484" 
-                   class="block w-full bg-white text-black py-4 rounded-lg font-bold hover:bg-gray-200 transition-all uppercase tracking-widest text-sm text-center">
+                   class="block w-full bg-white text-black py-4 rounded-xl font-black hover:bg-gray-200 transition-all uppercase tracking-widest text-xs text-center shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                     I am 18 or older - Enter
                 </a>
                 <button onclick="window.location.href='https://www.google.com'" 
-                        class="block w-full bg-transparent border border-gray-800 text-gray-600 py-3 rounded-lg font-medium hover:text-white hover:border-gray-500 transition-all text-sm">
-                    Leave
+                        class="block w-full bg-transparent border border-gray-800 text-gray-600 py-3 rounded-xl font-bold hover:text-white hover:border-gray-400 transition-all text-xs uppercase tracking-widest">
+                    Exit Site
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Footer with Legal Links -->
+    <!-- Footer -->
     <footer>
-        <nav class="flex flex-wrap justify-center gap-2">
+        <nav class="flex flex-wrap justify-center gap-y-2">
             <span class="footer-link" onclick="openInfo('terms')">Terms & Conditions</span>
             <span class="footer-link" onclick="openInfo('privacy')">Privacy Policy</span>
             <span class="footer-link" onclick="openInfo('returns')">Returns & Cancellation</span>
             <span class="footer-link" onclick="openInfo('shipping')">Shipping & Delivery</span>
             <span class="footer-link" onclick="openInfo('contact')">Contact Us</span>
         </nav>
-        <p class="text-[8px] text-gray-700 mt-2">© 2024 Sensselo. All rights reserved.</p>
+        <p class="text-[9px] text-gray-800 mt-4 font-bold tracking-widest uppercase">© 2024 Sensello Global. All rights reserved.</p>
     </footer>
 
-    <!-- Info Popup (Cookie Modal) -->
+    <!-- Info Popup (Cookie Style Modals) -->
     <div id="info-modal" class="info-modal" onclick="closeInfo(event)">
         <div class="info-content" onclick="event.stopPropagation()">
             <div class="info-header">
-                <h3 id="modal-title" class="text-white font-bold uppercase tracking-wider">Information</h3>
-                <button onclick="document.getElementById('info-modal').style.display='none'" class="text-gray-500 hover:text-white text-xl">&times;</button>
+                <h3 id="modal-title" class="text-white font-black uppercase tracking-widest text-sm">Information</h3>
+                <button onclick="document.getElementById('info-modal').style.display='none'" class="text-gray-500 hover:text-white text-2xl font-light">&times;</button>
             </div>
             <div id="modal-body" class="info-body">
-                <!-- Content injected by JS -->
+                <!-- Data injected via JavaScript -->
             </div>
         </div>
     </div>
@@ -192,58 +303,67 @@
         const legalData = {
             terms: `
                 <h2>Terms & Conditions</h2>
-                <p>Dear valued customer, please read these Terms of Service (hereinafter – “Terms”) carefully before using any feature of https://get-sensseloshop.com/ (hereinafter – “Website”) or purchasing any of the products therein.</p>
-                <p>These Terms govern your use of the Website and any of its features, and together with all other terms and policies specified below, it shall form a legally binding agreement between You and us.</p>
+                <p>Dear valued customer, please read these Terms of Service carefully before using any feature of https://get-sensseloshop.com/ or purchasing any products.</p>
+                <p>These Terms govern your use of the Website and form a legally binding agreement between You and us.</p>
                 <h2>Who We Are</h2>
-                <p>Sensselo is a brand name used and operated by a business entity UAB CommerceCore, company No. 302566167, registered in Lithuania at Savanorių pr. 363, Kaunas.</p>
+                <p>Sensselo is a brand name used and operated by <strong>UAB CommerceCore</strong>, a limited liability company incorporated in Lithuania, company No. 302566167, with a registered office address at Savanorių pr. 363, Kaunas, Lithuania.</p>
                 <h2>Our Products</h2>
-                <p>Our Products are manufactured in China by licensed manufacturers. They are not toys, medical devices, and are intended for personal use only.</p>
+                <p>Our Products are manufactured in China by licensed manufacturers. They are not toys and should never be given to children. Our Products are not medical devices and are not intended to diagnose, treat, cure, or prevent any disease.</p>
                 <h2>Delivery</h2>
-                <p>Orders are processed within 1-3 business days. Delivery usually takes 5 to 20 calendar days.</p>
+                <p>We process orders within 1-3 business days. Delivery typically takes 5 to 20 calendar days. We ship to the US, Canada, New Zealand, UK, and European countries.</p>
                 <h2>Returns & Refunds</h2>
-                <p>Damaged products can be returned for a full refund within 30 days of delivery. Contact support@get-sensseloshop.com to initiate.</p>
-                <h2>Governing Law</h2>
-                <p>These Terms are subject to the laws of the Republic of Lithuania.</p>
+                <p>If Products arrive damaged, you may return them within 30 days. Contact support@get-sensseloshop.com for a return code. Refunds are processed within 14 days of receipt.</p>
+                <h2>Warranty</h2>
+                <p>All Products come with a standard two-year warranty for defects. It does not apply to mechanical damage or unintended use.</p>
+                <h2>Rules of Conduct</h2>
+                <p>Products are for personal use only. Commercial reselling or distribution without consent is strictly forbidden.</p>
             `,
             privacy: `
                 <h2>Privacy Policy</h2>
-                <p>We respect your privacy. This policy explains how we collect and use your data when you visit our website.</p>
-                <h2>What Information We Collect</h2>
-                <p>We collect names, addresses, emails, and payment info to process orders (GDPR Art. 6 1b). We also collect IP addresses and device info for security (GDPR Art. 6 1f).</p>
+                <p>This Policy explains how we collect, use, and store information about you when visiting Sensello.</p>
+                <h2>Information We Collect</h2>
+                <table>
+                    <thead><tr><th>Purpose</th><th>Data Collected</th><th>Retention</th></tr></thead>
+                    <tbody>
+                        <tr><td>Order Processing</td><td>Name, Address, Email, Phone, Payment Data</td><td>1 Year</td></tr>
+                        <tr><td>Website Security</td><td>IP Address, Browser Type, Device ID</td><td>1 Month</td></tr>
+                        <tr><td>Customer Queries</td><td>Name, Email, Inquiry Content</td><td>10 Years</td></tr>
+                    </tbody>
+                </table>
+                <h2>Sharing Your Information</h2>
+                <p>We share data with financial institutions for payments, IT service providers, and shipping partners (like Shopify Inc. and Google Analytics).</p>
                 <h2>Cookies</h2>
                 <table>
                     <thead><tr><th>Cookie Name</th><th>Description</th><th>Expiry</th></tr></thead>
                     <tbody>
-                        <tr><td>CookieScriptConsent</td><td>Remembers consent preferences</td><td>1 month</td></tr>
-                        <tr><td>laravel_session</td><td>Identifies session instance</td><td>2 hours</td></tr>
-                        <tr><td>XSRF-TOKEN</td><td>Security against CSRF attacks</td><td>2 hours</td></tr>
+                        <tr><td>CookieScriptConsent</td><td>Consent preferences</td><td>1 month</td></tr>
+                        <tr><td>laravel_session</td><td>Session identification</td><td>2 hours</td></tr>
+                        <tr><td>XSRF-TOKEN</td><td>Security / CSRF Prevention</td><td>2 hours</td></tr>
                     </tbody>
                 </table>
-                <h2>Your Rights</h2>
-                <p>Under GDPR, you have the right to access, correct, or delete your personal data. Contact support@get-sensseloshop.com for requests.</p>
             `,
             returns: `
                 <h2>Returns & Cancellation</h2>
                 <p><strong>Eligible Reasons:</strong> Product damaged upon delivery or cancellation within 12 hours of purchase.</p>
                 <h2>Return Process</h2>
-                <p>Contact support within 30 days of delivery. Damaged products must be returned in original, unused condition with original packaging.</p>
-                <p>Refunds take 5-7 business days to process once the item reaches our Returns Center.</p>
-                <h2>Order Cancellation</h2>
-                <p>You may cancel your order within 12 hours if it hasn't been shipped yet. Please contact us immediately.</p>
+                <p>Customer must contact Support and return the damaged product within 30 days. Photos of the damage are required. The Company covers shipping costs for damaged items.</p>
+                <h2>Cancellation</h2>
+                <p>Orders can be cancelled within 12 hours if they have not been shipped. All orders are processed quickly, so speed is essential.</p>
             `,
             shipping: `
                 <h2>Shipping & Delivery</h2>
-                <p>Shipping costs are calculated at checkout. We ship worldwide.</p>
-                <p><strong>Tracking:</strong> You will receive a confirmation email with a tracking ID. Please allow 1-3 business days for info to update.</p>
-                <p><strong>Timeline:</strong> Most items are dispatched within 12 hours. Delivery takes 5-12 business days on average.</p>
-                <p><strong>Address:</strong> It is the buyer's responsibility to ensure the shipping address is correct. We have a small 12-hour window for corrections.</p>
+                <p>Shipping costs are calculated at checkout. We ship worldwide. Tracking IDs are provided via email within 1-3 business days.</p>
+                <h2>Delivery Times</h2>
+                <p>Most items are dispatched within 12 hours. Delivery takes 5-12 business days on average. Please allow for holidays or customs delays.</p>
+                <h2>Responsibility</h2>
+                <p>The buyer is responsible for entering the correct address. We are not responsible for lost or stolen packages once marked as delivered by the carrier.</p>
             `,
             contact: `
                 <h2>Contact Us</h2>
-                <p>Need help? If you have any questions about your order or our products, please contact us:</p>
+                <p>If you have any questions about your order or our products, please don’t hesitate to contact us:</p>
                 <p><strong>By Phone:</strong> +1 (859) 780-8845</p>
                 <p><strong>By Email:</strong> support@get-sensseloshop.com</p>
-                <p><strong>Address:</strong> UAB Commercecore, Savanorių pr. 363, Kaunas, Lithuania</p>
+                <p><strong>Office:</strong> UAB Commercecore, Savanorių pr. 363, Kaunas, Lithuania</p>
             `
         };
 
