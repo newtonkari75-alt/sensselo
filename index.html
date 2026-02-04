@@ -88,12 +88,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111; /* Neutral dark background for loading */
+            background-color: #000;
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -114,7 +114,6 @@
             transition: filter 0.5s ease;
         }
 
-        /* Responsive Backgrounds from images/ folder */
         @media (min-width: 768px) { 
             .bg-image { background-image: url('images/sensselo-desk.png'); } 
         }
@@ -122,9 +121,8 @@
             .bg-image { background-image: url('images/sensselo-mob.png'); } 
         }
 
-        /* Blur effect - adjusted brightness to remove the heavy "black" feel */
         .is-blurred { 
-            filter: blur(10px) brightness(0.95) saturate(1.1); 
+            filter: blur(4px) brightness(0.95) saturate(1.1); 
         }
 
         .modal-overlay {
@@ -134,23 +132,29 @@
             align-items: center;
             justify-content: center;
             z-index: 50;
-            background-color: rgba(0, 0, 0, 0.25); /* Subtle overlay to keep background visible */
+            background-color: rgba(0, 0, 0, 0.2); 
         }
 
         .modal-content {
-            background-color: rgba(10, 10, 10, 0.9); /* High contrast modal but slightly translucent */
+            background-color: rgba(10, 10, 10, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
             padding: 2.5rem;
-            border-radius: 1.5rem;
+            border-radius: 2rem;
             max-width: 440px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
+            animation: modalEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Legal Content Modal */
+        @keyframes modalEnter {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Enhanced Info "Cookie" Modal */
         .info-modal {
             position: fixed;
             inset: 0;
@@ -158,46 +162,96 @@
             display: none;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85);
             padding: 1rem;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Animation class for JS */
+        .info-modal.active {
+            display: flex;
         }
 
         .info-content {
-            background-color: #0f0f0f;
-            color: #ddd;
+            background-color: #0c0c0c;
+            color: #ccc;
             width: 100%;
-            max-width: 800px;
+            max-width: 750px;
             max-height: 85vh;
-            border-radius: 1rem;
-            border: 1px solid #333;
+            border-radius: 1.5rem;
+            border: 1px solid #222;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 0 100px rgba(0,0,0,0.5);
+            animation: infoSlideUp 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
+        @keyframes infoSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Professional Modal Header */
         .info-header {
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid #222;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         .info-body {
             padding: 2rem;
             overflow-y: auto;
-            font-size: 0.9rem;
-            line-height: 1.7;
+            font-size: 0.95rem;
+            line-height: 1.8;
             text-align: left;
+            scrollbar-width: thin;
+            scrollbar-color: #333 transparent;
         }
 
-        .info-body h2 { color: white; font-weight: 800; margin-top: 1.8rem; margin-bottom: 0.8rem; font-size: 1.25rem; border-left: 3px solid #fff; padding-left: 10px; }
-        .info-body p { margin-bottom: 1.2rem; }
-        .info-body strong { color: white; }
+        /* Custom Scrollbar for Chrome/Safari */
+        .info-body::-webkit-scrollbar { width: 6px; }
+        .info-body::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+
+        .info-body h2 { 
+            color: #fff; 
+            font-weight: 800; 
+            margin-top: 2rem; 
+            margin-bottom: 0.75rem; 
+            font-size: 1.25rem; 
+            letter-spacing: -0.02em;
+        }
         
-        .info-body table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #050505; }
-        .info-body th, .info-body td { border: 1px solid #333; padding: 12px; text-align: left; font-size: 0.8rem; }
-        .info-body th { background: #151515; color: white; text-transform: uppercase; letter-spacing: 1px; }
+        .info-body h2:first-of-type { margin-top: 0; }
+        
+        .info-body p { margin-bottom: 1.25rem; color: #aaa; }
+        .info-body strong { color: #fff; font-weight: 600; }
+        
+        .info-body table { width: 100%; border-collapse: collapse; margin: 2rem 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid #222; }
+        .info-body th, .info-body td { padding: 1rem; text-align: left; font-size: 0.85rem; border-bottom: 1px solid #222; }
+        .info-body th { background: #1a1a1a; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .info-body tr:last-child td { border-bottom: none; }
+
+        .modal-close-btn {
+            background: #222;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .modal-close-btn:hover { background: #444; transform: scale(1.1); }
 
         footer {
             position: fixed;
@@ -206,50 +260,69 @@
             width: 100%;
             z-index: 40;
             padding: 1.5rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             text-align: center;
         }
 
         .footer-link {
-            color: #eee; /* Brighter for readability on images */
-            font-size: 10px;
+            color: #fff;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             margin: 0 12px;
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 10px rgba(0,0,0,1);
+            opacity: 0.6;
         }
 
-        .footer-link:hover { color: #fff; transform: translateY(-1px); }
+        .footer-link:hover { opacity: 1; transform: translateY(-1px); }
+
+        /* Mobile Adjustments for Legal Modal */
+        @media (max-width: 640px) {
+            .info-content {
+                max-height: 92vh;
+                border-radius: 1.25rem;
+                margin-top: 2vh;
+            }
+            .info-body {
+                padding: 1.5rem;
+                font-size: 0.9rem;
+            }
+            .footer-link {
+                font-size: 9px;
+                letter-spacing: 1px;
+                margin: 0 6px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Background Layer with Sensello photos -->
+    <!-- Background Layer -->
     <div id="background" class="bg-image is-blurred"></div>
 
     <!-- Age Verification Modal -->
     <div id="age-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-red-600 text-red-600 text-2xl font-black">
+            <div class="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full border-2 border-red-600 text-red-600 text-3xl font-black shadow-[0_0_30px_rgba(220,38,38,0.2)]">
                 18+
             </div>
-            <h1 class="text-3xl font-black mb-2 tracking-tighter uppercase italic">Sensello</h1>
-            <h2 class="text-sm font-bold mb-4 tracking-widest text-gray-500 uppercase">Age Verification</h2>
+            <h1 class="text-4xl font-black mb-1 tracking-tighter uppercase italic text-white">Sensello</h1>
+            <h2 class="text-xs font-bold mb-6 tracking-[0.3em] text-gray-500 uppercase">Age Verification</h2>
             
-            <p class="text-gray-400 mb-8 leading-relaxed text-sm">
+            <p class="text-gray-400 mb-10 leading-relaxed text-sm font-medium">
                 This website contains adult content intended for individuals aged 18 and older. Please confirm your age to proceed.
             </p>
 
             <div class="space-y-4">
                 <a href="https://www.fasttrack37.com/PM7HK3TH/2RS2R65Q/?uid=49484" 
-                   class="block w-full bg-white text-black py-4 rounded-xl font-black hover:bg-gray-200 transition-all uppercase tracking-widest text-xs text-center shadow-[0_10px_30px_rgba(255,255,255,0.15)]">
+                   class="block w-full bg-white text-black py-4 rounded-2xl font-black hover:bg-gray-200 transition-all uppercase tracking-widest text-xs text-center shadow-[0_15px_40px_rgba(255,255,255,0.15)] active:scale-95">
                     I am 18 or older - Enter
                 </a>
                 <button onclick="window.location.href='https://www.google.com'" 
-                        class="block w-full bg-transparent border border-gray-700 text-gray-400 py-3 rounded-xl font-bold hover:text-white hover:border-gray-500 transition-all text-xs uppercase tracking-widest">
+                        class="block w-full bg-transparent border border-gray-800 text-gray-500 py-3 rounded-2xl font-bold hover:text-white hover:border-gray-500 transition-all text-[10px] uppercase tracking-widest">
                     Exit Site
                 </button>
             </div>
@@ -258,25 +331,27 @@
 
     <!-- Footer -->
     <footer>
-        <nav class="flex flex-wrap justify-center gap-y-2">
+        <nav class="flex flex-wrap justify-center gap-y-3">
             <span class="footer-link" onclick="openInfo('terms')">Terms & Conditions</span>
             <span class="footer-link" onclick="openInfo('privacy')">Privacy Policy</span>
             <span class="footer-link" onclick="openInfo('returns')">Returns & Cancellation</span>
             <span class="footer-link" onclick="openInfo('shipping')">Shipping & Delivery</span>
             <span class="footer-link" onclick="openInfo('contact')">Contact Us</span>
         </nav>
-        <p class="text-[9px] text-white/50 mt-4 font-bold tracking-widest uppercase text-shadow">© 2024 Sensello Global. All rights reserved.</p>
+        <p class="text-[9px] text-white/30 mt-6 font-bold tracking-widest uppercase">© 2024 Sensello Global. All rights reserved.</p>
     </footer>
 
-    <!-- Info Popup -->
+    <!-- Professional Info Popup (Cookie Content) -->
     <div id="info-modal" class="info-modal" onclick="closeInfo(event)">
         <div class="info-content" onclick="event.stopPropagation()">
             <div class="info-header">
-                <h3 id="modal-title" class="text-white font-black uppercase tracking-widest text-sm">Information</h3>
-                <button onclick="document.getElementById('info-modal').style.display='none'" class="text-gray-500 hover:text-white text-2xl font-light">&times;</button>
+                <h3 id="modal-title" class="text-white font-extrabold uppercase tracking-widest text-[11px]">Information</h3>
+                <div onclick="toggleInfo(false)" class="modal-close-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </div>
             </div>
             <div id="modal-body" class="info-body">
-                <!-- Data injected via JavaScript -->
+                <!-- Content Injected -->
             </div>
         </div>
     </div>
@@ -285,72 +360,85 @@
         const legalData = {
             terms: `
                 <h2>Terms & Conditions</h2>
-                <p>Dear valued customer, please read these Terms of Service carefully before using any feature of https://get-sensseloshop.com/ or purchasing any products.</p>
-                <p>These Terms govern your use of the Website and form a legally binding agreement between You and us.</p>
+                <p>Dear valued customer, please read these Terms of Service (hereinafter – “Terms”) carefully before using any feature of <strong>https://get-sensseloshop.com/</strong> (hereinafter – “Website”) or purchasing any of the products therein.</p>
+                <p>These Terms govern your use of the Website and any of its features, and together with all other terms and policies specified below, it shall form a legally binding agreement between You and us.</p>
                 <h2>Who We Are</h2>
-                <p>Sensello is a brand name used and operated by <strong>UAB CommerceCore</strong>, a limited liability company incorporated in Lithuania, company No. 302566167, with a registered office address at Savanorių pr. 363, Kaunas, Lithuania.</p>
+                <p>Sensello is a brand name used and operated by a business entity <strong>UAB CommerceCore</strong>, which is a limited liability company incorporated in Lithuania, company No. 302566167, with a registered office address at Savanorių pr. 363, Kaunas, Lithuania.</p>
                 <h2>Our Products</h2>
-                <p>Our Products are manufactured in China by licensed manufacturers. They are not toys and should never be given to children. Our Products are not medical devices and are not intended to diagnose, treat, cure, or prevent any disease.</p>
+                <p>Our Products are manufactured in China by licensed manufacturers that comply with all applicable safety and manufacturing standards. Our Products are not toys and should never be given to children. Our Products are not medical devices and are not intended to diagnose, treat, cure, or prevent any disease.</p>
                 <h2>Delivery</h2>
-                <p>We process orders within 1-3 business days. Delivery typically takes 5 to 20 calendar days. We ship to the US, Canada, New Zealand, UK, and European countries.</p>
+                <p>Once you have placed your order and made the payment, we will process your order within 1-3 business days. After your order is processed, you should receive the shipment within 5 to 20 calendar days.</p>
                 <h2>Returns & Refunds</h2>
-                <p>If Products arrive damaged, you may return them within 30 days. Contact support@get-sensseloshop.com for a return code. Refunds are processed within 14 days of receipt.</p>
+                <p>If the Products you purchased arrive damaged, you may return them and receive a full refund within 30 days from the delivery date. To exercise this right, you must contact our support team via <strong>support@get-sensseloshop.com</strong>.</p>
                 <h2>Warranty</h2>
-                <p>All Products come with a standard two-year warranty for defects. It does not apply to mechanical damage or unintended use.</p>
-                <h2>Rules of Conduct</h2>
-                <p>Products are for personal use only. Commercial reselling or distribution without consent is strictly forbidden.</p>
+                <p>All of our Products come with a standard two years warranty. We will replace any item that would turn out to be defective within the warranty term.</p>
+                <h2>Governing Law</h2>
+                <p>These Terms and the entire legal relationship between you and us shall be subject to the law of the Republic of Lithuania.</p>
             `,
             privacy: `
                 <h2>Privacy Policy</h2>
-                <p>This Policy explains how we collect, use, and store information about you when visiting Sensello.</p>
-                <h2>Information We Collect</h2>
+                <p>This Privacy Policy will answer the most important questions about how we collect, use and store information about you whenever you are visiting our Website.</p>
+                <h2>What Information We Collect</h2>
                 <table>
-                    <thead><tr><th>Purpose</th><th>Data Collected</th><th>Retention</th></tr></thead>
+                    <thead><tr><th>Purpose</th><th>Data</th><th>Retention</th></tr></thead>
                     <tbody>
-                        <tr><td>Order Processing</td><td>Name, Address, Email, Phone, Payment Data</td><td>1 Year</td></tr>
-                        <tr><td>Website Security</td><td>IP Address, Browser Type, Device ID</td><td>1 Month</td></tr>
-                        <tr><td>Customer Queries</td><td>Name, Email, Inquiry Content</td><td>10 Years</td></tr>
+                        <tr><td>Purchases</td><td>Name, Address, Phone, Email, Payment BIN</td><td>1 year</td></tr>
+                        <tr><td>Security</td><td>IP Address, Device ID, Browser Type</td><td>1 month</td></tr>
+                        <tr><td>Support</td><td>Email history, Inquiry content</td><td>10 years</td></tr>
                     </tbody>
                 </table>
-                <h2>Sharing Your Information</h2>
-                <p>We share data with financial institutions for payments, IT service providers, and shipping partners (like Shopify Inc. and Google Analytics).</p>
-                <h2>Cookies</h2>
+                <h2>Cookies Usage</h2>
                 <table>
                     <thead><tr><th>Cookie Name</th><th>Description</th><th>Expiry</th></tr></thead>
                     <tbody>
-                        <tr><td>CookieScriptConsent</td><td>Consent preferences</td><td>1 month</td></tr>
-                        <tr><td>laravel_session</td><td>Session identification</td><td>2 hours</td></tr>
-                        <tr><td>XSRF-TOKEN</td><td>Security / CSRF Prevention</td><td>2 hours</td></tr>
+                        <tr><td>CookieScriptConsent</td><td>Remembers consent preferences</td><td>1 month</td></tr>
+                        <tr><td>laravel_session</td><td>Identifies session instance</td><td>2 hours</td></tr>
+                        <tr><td>XSRF-TOKEN</td><td>Prevents CSRF attacks</td><td>2 hours</td></tr>
                     </tbody>
                 </table>
+                <p>We take necessary precautions to protect Your personal information from being inappropriately lost, misused, accessed, or disclosed. We follow industry best practices and all requirements set by applicable laws.</p>
             `,
             returns: `
                 <h2>Returns & Cancellation</h2>
-                <p><strong>Eligible Reasons:</strong> Product damaged upon delivery or cancellation within 12 hours of purchase.</p>
+                <p><strong>Eligible reasons to return the purchase or get a refund:</strong></p>
+                <ul>
+                    <li>• The Product is damaged upon delivery;</li>
+                    <li>• The cancellation was made within 12 hours after the purchase;</li>
+                </ul>
                 <h2>Return Process</h2>
-                <p>Customer must contact Support and return the damaged product within 30 days. Photos of the damage are required. The Company covers shipping costs for damaged items.</p>
-                <h2>Cancellation</h2>
-                <p>Orders can be cancelled within 12 hours if they have not been shipped. All orders are processed quickly, so speed is essential.</p>
+                <p>The customer must provide photos of the damaged product and return it in original packaging. It takes 5-7 business days to issue a refund after the product is returned to our Returns Center. The Company will cover all shipping costs related to returning a damaged item.</p>
+                <h2>Cancellation of the Order</h2>
+                <p>The Customer has the right to cancel the order within <strong>12 hours</strong> if the order was not shipped prior to the cancellation request.</p>
             `,
             shipping: `
                 <h2>Shipping & Delivery</h2>
-                <p>Shipping costs are calculated at checkout. We ship worldwide. Tracking IDs are provided via email within 1-3 business days.</p>
-                <h2>Delivery Times</h2>
-                <p>Most items are dispatched within 12 hours. Delivery takes 5-12 business days on average. Please allow for holidays or customs delays.</p>
+                <p>Shipping costs will be calculated at the checkout. We ship Worldwide. You will receive a confirmation email containing a tracking ID and a link to follow the journey of your package.</p>
+                <h2>Estimated Times</h2>
+                <p>Most items are dispatched within 12 hours. It will take up to 5-12 business days for the delivery of your order. Please consider any holidays that might impact delivery times.</p>
                 <h2>Responsibility</h2>
-                <p>The buyer is responsible for entering the correct address. We are not responsible for lost or stolen packages once marked as delivered by the carrier.</p>
+                <p>It is the responsibility of the buyer to make sure that the shipping address entered is correct. We are not responsible for lost or stolen packages if the carrier confirms delivery to the provided address.</p>
             `,
             contact: `
                 <h2>Contact Us</h2>
-                <p>If you have any questions about your order or our products, please don’t hesitate to contact us:</p>
-                <p><strong>By Phone:</strong> +1 (859) 780-8845</p>
+                <p>If you have any questions about your order or our products, please don’t hesitate to contact our dedicated support team:</p>
                 <p><strong>By Email:</strong> support@get-sensseloshop.com</p>
-                <p><strong>Office:</strong> UAB Commercecore, Savanorių pr. 363, Kaunas, Lithuania</p>
+                <p><strong>By Phone:</strong> +1 (859) 780-8845</p>
+                <p><strong>Business Address:</strong> UAB Commercecore, Savanorių pr. 363, Kaunas, Lithuania</p>
             `
         };
 
-        function openInfo(type) {
+        function toggleInfo(show) {
             const modal = document.getElementById('info-modal');
+            if (show) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.remove('active');
+                // Only allow scroll if age verification is gone (which it isn't here)
+            }
+        }
+
+        function openInfo(type) {
             const title = document.getElementById('modal-title');
             const body = document.getElementById('modal-body');
             
@@ -364,12 +452,13 @@
 
             title.innerText = titles[type];
             body.innerHTML = legalData[type];
-            modal.style.display = 'flex';
+            body.scrollTop = 0; // Reset scroll position
+            toggleInfo(true);
         }
 
         function closeInfo(e) {
             if (e.target.id === 'info-modal') {
-                document.getElementById('info-modal').style.display = 'none';
+                toggleInfo(false);
             }
         }
     </script>
