@@ -76,27 +76,6 @@
             "availability": "https://schema.org/InStock",
             "areaServed": ["AR", "AU", "AT", "BE", "CA", "CL", "DK", "FI", "FR", "DE", "GR", "IE", "IL", "IT", "MX", "NL", "NZ", "NO", "PT", "ZA", "ES", "SE", "CH", "GB", "US"]
           }
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Where is Sensello shipped from?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Sensello orders are processed and shipped globally from our international fulfillment centers, including locations in Europe and Asia."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Is there a warranty for Sensello?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes, all Sensello products come with a standard two-year warranty against manufacturing defects."
-              }
-            }
-          ]
         }
       ]
     }
@@ -114,14 +93,14 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000;
+            background-color: #111; /* Neutral dark background for loading */
             margin: 0;
             padding: 0;
             overflow: hidden;
             height: 100vh;
         }
 
-        /* Background Layer with blurring */
+        /* Background Layer */
         .bg-image {
             position: fixed;
             top: 0;
@@ -135,7 +114,7 @@
             transition: filter 0.5s ease;
         }
 
-        /* Responsive Backgrounds */
+        /* Responsive Backgrounds from images/ folder */
         @media (min-width: 768px) { 
             .bg-image { background-image: url('images/sensselo-desk.png'); } 
         }
@@ -143,9 +122,9 @@
             .bg-image { background-image: url('images/sensselo-mob.png'); } 
         }
 
-        /* The requested slight blur effect */
+        /* Blur effect - adjusted brightness to remove the heavy "black" feel */
         .is-blurred { 
-            filter: blur(6px) brightness(0.4); 
+            filter: blur(10px) brightness(0.95) saturate(1.1); 
         }
 
         .modal-overlay {
@@ -155,19 +134,20 @@
             align-items: center;
             justify-content: center;
             z-index: 50;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.25); /* Subtle overlay to keep background visible */
         }
 
         .modal-content {
-            background-color: #0d0d0d;
-            border: 1px solid #222;
+            background-color: rgba(10, 10, 10, 0.9); /* High contrast modal but slightly translucent */
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
             padding: 2.5rem;
             border-radius: 1.5rem;
             max-width: 440px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 1);
+            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
         }
 
         /* Legal Content Modal */
@@ -178,12 +158,13 @@
             display: none;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 1rem;
+            backdrop-filter: blur(5px);
         }
 
         .info-content {
-            background-color: #111;
+            background-color: #0f0f0f;
             color: #ddd;
             width: 100%;
             max-width: 800px;
@@ -214,9 +195,9 @@
         .info-body p { margin-bottom: 1.2rem; }
         .info-body strong { color: white; }
         
-        .info-body table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #0a0a0a; }
+        .info-body table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #050505; }
         .info-body th, .info-body td { border: 1px solid #333; padding: 12px; text-align: left; font-size: 0.8rem; }
-        .info-body th { background: #1a1a1a; color: white; text-transform: uppercase; letter-spacing: 1px; }
+        .info-body th { background: #151515; color: white; text-transform: uppercase; letter-spacing: 1px; }
 
         footer {
             position: fixed;
@@ -225,27 +206,28 @@
             width: 100%;
             z-index: 40;
             padding: 1.5rem;
-            background: linear-gradient(transparent, rgba(0,0,0,1));
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
             text-align: center;
         }
 
         .footer-link {
-            color: #555;
+            color: #eee; /* Brighter for readability on images */
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin: 0 12px;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: 600;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        .footer-link:hover { color: #fff; }
+        .footer-link:hover { color: #fff; transform: translateY(-1px); }
     </style>
 </head>
 <body>
 
-    <!-- Blurred Background -->
+    <!-- Background Layer with Sensello photos -->
     <div id="background" class="bg-image is-blurred"></div>
 
     <!-- Age Verification Modal -->
@@ -263,11 +245,11 @@
 
             <div class="space-y-4">
                 <a href="https://www.fasttrack37.com/PM7HK3TH/2RS2R65Q/?uid=49484" 
-                   class="block w-full bg-white text-black py-4 rounded-xl font-black hover:bg-gray-200 transition-all uppercase tracking-widest text-xs text-center shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                   class="block w-full bg-white text-black py-4 rounded-xl font-black hover:bg-gray-200 transition-all uppercase tracking-widest text-xs text-center shadow-[0_10px_30px_rgba(255,255,255,0.15)]">
                     I am 18 or older - Enter
                 </a>
                 <button onclick="window.location.href='https://www.google.com'" 
-                        class="block w-full bg-transparent border border-gray-800 text-gray-600 py-3 rounded-xl font-bold hover:text-white hover:border-gray-400 transition-all text-xs uppercase tracking-widest">
+                        class="block w-full bg-transparent border border-gray-700 text-gray-400 py-3 rounded-xl font-bold hover:text-white hover:border-gray-500 transition-all text-xs uppercase tracking-widest">
                     Exit Site
                 </button>
             </div>
@@ -283,10 +265,10 @@
             <span class="footer-link" onclick="openInfo('shipping')">Shipping & Delivery</span>
             <span class="footer-link" onclick="openInfo('contact')">Contact Us</span>
         </nav>
-        <p class="text-[9px] text-gray-800 mt-4 font-bold tracking-widest uppercase">© 2024 Sensello Global. All rights reserved.</p>
+        <p class="text-[9px] text-white/50 mt-4 font-bold tracking-widest uppercase text-shadow">© 2024 Sensello Global. All rights reserved.</p>
     </footer>
 
-    <!-- Info Popup (Cookie Style Modals) -->
+    <!-- Info Popup -->
     <div id="info-modal" class="info-modal" onclick="closeInfo(event)">
         <div class="info-content" onclick="event.stopPropagation()">
             <div class="info-header">
@@ -306,7 +288,7 @@
                 <p>Dear valued customer, please read these Terms of Service carefully before using any feature of https://get-sensseloshop.com/ or purchasing any products.</p>
                 <p>These Terms govern your use of the Website and form a legally binding agreement between You and us.</p>
                 <h2>Who We Are</h2>
-                <p>Sensselo is a brand name used and operated by <strong>UAB CommerceCore</strong>, a limited liability company incorporated in Lithuania, company No. 302566167, with a registered office address at Savanorių pr. 363, Kaunas, Lithuania.</p>
+                <p>Sensello is a brand name used and operated by <strong>UAB CommerceCore</strong>, a limited liability company incorporated in Lithuania, company No. 302566167, with a registered office address at Savanorių pr. 363, Kaunas, Lithuania.</p>
                 <h2>Our Products</h2>
                 <p>Our Products are manufactured in China by licensed manufacturers. They are not toys and should never be given to children. Our Products are not medical devices and are not intended to diagnose, treat, cure, or prevent any disease.</p>
                 <h2>Delivery</h2>
